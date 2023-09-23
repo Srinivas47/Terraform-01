@@ -3,7 +3,7 @@
 resource "aws_instance" "private_app_instances" {
   count         = 6
   ami           = var.ami_id
-  instance_type = "t2.micro"
+  instance_type = var.instance_type.id
   subnet_id     = aws_subnet.app_tier_subnet.id
 
   # Tags for instances
@@ -44,7 +44,7 @@ resource "aws_subnet" "db_tier_subnet" {
 resource "aws_instance" "db_instances" {
   count         = 4
   ami           = var.ami_id
-  instance_type = "t2.micro"
+  instance_type = var.instance_type.id
   subnet_id     = aws_subnet.db_tier_subnet.id
 
   # Tags for instances
